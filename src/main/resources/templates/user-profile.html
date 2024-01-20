@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>User Profile</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+
+<div class="container mt-5">
+    <div class="card">
+        <div class="card-body">
+            <!-- 사용자 이름 -->
+            <h2 class="text-center" th:text="${username}">Username</h2>
+
+            <!-- 버튼들 -->
+            <div class="mb-4 text-center">
+                <!-- 글 작성하기 버튼 -->
+                <a href="/write-post" class="btn btn-primary">글 작성하기</a>
+                <!-- 둘러보기 버튼 -->
+                <a href="/explore" class="btn btn-secondary">둘러보기</a>
+            </div>
+
+            <!-- 사용자가 작성한 글 목록 -->
+            <div class="user-posts">
+                <h4>Posts</h4>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item" th:each="post : ${posts}" th:text="${post.content}">
+                        Post content goes here...
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
