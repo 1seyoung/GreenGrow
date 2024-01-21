@@ -1,10 +1,50 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns="http://www.w3.org/1999/html">
 <head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
+    <link rel="stylesheet" type="text/css" href="/style.css">
+    <meta charset="UTF-8">
+    <title>Home Page</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        /* 가운데 정렬 스타일 */
+        body {
+            background-color: #79CF80;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            height: 100vh;
+            margin: 0;
+        }
+        /* 텍스트와 버튼 가운데 정렬 스타일 */
+        .center-align {
+            text-align: center;
+        }
+        /* 각 줄에 대한 스타일 */
+        .text-line {
+            background-color: white; /* 흰색 배경 설정 */
+            padding: 3px; /* 내부 여백 설정 */
+            margin: 3px 0; /* 위아래 마진 설정 */
+            border-radius: 5px; /* 모서리 둥글게 설정 */
+            display: inline-block; /* 줄마다 배경 적용 */
+        }
+    </style>
 </head>
 <body>
-$END$
+<!-- 가운데 정렬된 이미지 -->
+<img src="/images/logo.png" width="200" alt="Logo">
+<img src="/images/main_img.png" width="300" alt="plant" class="round-image">
+
+<!-- 설명 텍스트와 로그인 버튼을 감싸는 div -->
+<div class="center-align">
+    <!-- 각 줄에 대한 텍스트 -->
+    <br>
+    <span class="text-line">지금 바로 "식물 일기록"에 가입하여 여러분의 식물 친구들과 함께 성장하는 모든 순간을 기록하고 공유해보세요.</span><br>
+    <span class="text-line">식물을 키우는 새로운 경험을 만들어 드리는 "식물 일기록"에서 여러분을 기다리고 있습니다. 🌿💚</span>
+    <br><br>
+
+    <!-- 로그인으로 가는 버튼 -->
+    <a href="/user/login" class="btn btn-primary rounded-pill">로그인</a>
+</div>
 </body>
 </html>

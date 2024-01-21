@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
+    <link rel="stylesheet" type="text/css" href="/style.css">
     <meta charset="UTF-8">
     <title>Register</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
@@ -8,6 +9,7 @@
 <body class="bg-light">
 
 <div class="container mt-5">
+    <div th:if="${registrationError}" th:text="${registrationError}" class="error-message"></div>
     <div class="row">
         <div class="col-md-6 offset-md-3">
             <div class="card">
@@ -33,7 +35,8 @@
                     </form>
                 </div>
                 <div class="card-footer text-center">
-                    <p>Already have an account? <a href="user/login" th:href="@{/user/login}">Sign in</a></p>
+                    <p>Already have an account? <a href="/user/login" th:href="@{/user/login}">Sign in</a></p>
+
                 </div>
             </div>
         </div>

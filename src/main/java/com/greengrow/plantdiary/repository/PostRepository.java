@@ -1,11 +1,14 @@
 package com.greengrow.plantdiary.repository;
 
 import com.greengrow.plantdiary.model.Post;
+import com.greengrow.plantdiary.model.User;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.stereotype.Repository;
 
-@Repository
+import java.util.List;
+
 public interface PostRepository extends JpaRepository<Post, Long> {
-    // 기본 CRUD 메소드들은 JpaRepository에 의해 제공됩니다.
-    // 여기에 필요한 추가적인 쿼리 메소드를 정의할 수 있습니다.
+    // 사용자를 기반으로 글을 조회하는 메소드
+    List<Post> findByUser(User user);
+
+    List<Post> findByUser_Username(String username);
 }
