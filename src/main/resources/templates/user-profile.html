@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>User Profile</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+
+<div class="container mt-5">
+    <div class="card">
+        <div class="card-body">
+            <!-- 사용자 이름 -->
+            <h2 class="text-center" th:text="${username}">Username</h2>
+
+            <!-- 버튼 그룹 -->
+            <div class="text-center mt-3">
+                <!-- 글 작성하기 버튼 -->
+                <a href="/write-post" class="btn btn-primary btn-sm">글 작성하기</a>
+                <!-- 둘러보기 버튼 -->
+                <a href="/explore" class="btn btn-secondary btn-sm">둘러보기</a>
+                <!-- 로그아웃 버튼 -->
+                <a href="/user/logout" th:href="@{/user/logout}" class="btn btn-danger btn-sm">로그아웃</a>
+
+            </div>
+
+
+            <!-- 사용자가 작성한 글 목록 -->
+            <div class="user-posts mt-3">
+                <h4>My Posts</h4>
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">작성날짜</th>
+                        <th scope="col">글 제목</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <!-- 데이터베이스에서 글을 가져와서 사용자가 작성한 글만 필터링하여 보여줍니다 -->
+                    <tr th:each="post, postStat : ${posts}">
+                        <!-- 글 번호 -->
+                        <td th:text="${postStat.index + 1}"></td>
+                        <!-- 작성날짜 -->
+                        <td th:text="${#temporals.format(post.date, 'yyyy-MM-dd')}"></td>
+                        <!-- 글 제목에 링크 추가 -->
+                        <td><a th:href="@{'/user/post/' + ${post.id}}" th:text="${post.title}"></a></td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

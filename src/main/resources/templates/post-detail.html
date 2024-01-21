@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>글 내용</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        /* 블로그 스타일 */
+        .blog-post {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .blog-title {
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        .blog-date {
+            color: #999;
+            font-size: 14px;
+        }
+
+        .blog-content {
+            margin-top: 20px;
+        }
+
+        /* 글 삭제 버튼 스타일 */
+        .delete-button {
+            margin-top: 20px;
+            text-align: right; /* 오른쪽 정렬 */
+        }
+
+        /* 이미지 스타일 */
+        .blog-image {
+            max-width: 100%; /* 이미지가 너무 크게 표시되지 않도록 최대 너비 지정 */
+            display: block;
+            margin: 20px auto; /* 가운데 정렬 */
+        }
+
+        .blog-post + .comment-section {
+            margin-top: 30px; /* 또는 원하는 크기 */
+        }
+    </style>
+</head>
+<body>
+
+<div class="container mt-5">
+    <div class="blog-post">
+        <!-- 글 제목 -->
+        <h2 class="blog-title text-center" th:text="${post.title}"></h2>
+
+        <!-- 작성날짜 -->
+        <p class="blog-date text-center" th:text="${#temporals.format(post.date, 'yyyy-MM-dd')}"></p>
+
+        <!-- 글 내용, 사용자가 입력한 HTML이 포함되어 있다고 가정 -->
+        <div class="blog-content" th:utext="${post.content}"></div>
+
+        <!-- 이미지, 사용자가 업로드한 이미지 URL로 'src' 속성을 동적으로 변경 -->
+        <img th:src="${post.imageUrl}" alt="User Image" class="blog-image">
+        <!-- Delete Button Section -->
+        <div class="delete-button">
+            <form th:action="'/delete/' + ${post.id}" method="post">
+                <input type="hidden" name="_method" value="DELETE">
+                <button class="btn btn-danger" type="submit">글 삭제</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Comment Input Form -->
+    <div class="comment-section">
+        <form th:action="@{'/comment/' + ${post.id}}" method="post">
+            <div class="form-group flex-grow-1 mr-2">
+                <input type="text" class="form-control w-100" name="comment" placeholder="댓글을 작성하세요">
+            </div>
+            <button class="btn btn-primary" type="submit">댓글 달기</button>
+        </form>
+    </div>
+
+    <!-- Comments Display Section -->
+    <div class="comments">
+        <br>
+        <h5>댓글 목록</h5>
+        <div th:each="comment : ${post.comments}">
+            <p th:text="${comment.user}">[사용자 이름]</p>
+            <p th:text="${comment.content}">[댓글 내용]</p>
+        </div>
+    </div>
+</div>
+
+<!-- Scripts -->
+</body>
+</html>
